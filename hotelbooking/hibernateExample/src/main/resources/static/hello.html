@@ -1,0 +1,61 @@
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$("#submit").click(function() {
+			alert("Hello..!");
+
+			var formdata = {
+				name : $('#name').val(),
+				email : $('#email').val(),
+				age : $('#age').val()
+			}
+
+			$.ajax({
+				url : "save",
+				type : "POST",
+				data : JSON.stringify(formdata),
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(data) {
+					alert("success saveRule: " + data);
+				},
+				error : function(request, status, error) {
+					alert("error saveRule: " + request.responseText + error);
+				}
+			});
+
+		});
+	});
+</script>
+
+
+</head>
+
+<body>
+		<table>
+			<tbody>
+				<tr>
+					<td><label>Enter name</label></td>
+					<td><input type="text" id="name"></td>
+				</tr>
+				<tr>
+					<td><label>Enter Email Id</label></td>
+					<td><input type="email" id="email"></td>
+				</tr>
+				<tr>
+					<td><label>Enter Age</label></td>
+					<td><input type="number" id="age"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<input type="submit" id="submit">
+		</div>
+
+</body>
+
+</html>
